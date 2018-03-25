@@ -106,7 +106,7 @@ def geocode_location(location, sensor=False, api_key=None):
     location -- A human-readable location, e.g 'London, England'
     sensor   -- Boolean flag denoting if the location came from a device using
                 its' location sensor (default False)
-    api_key  -- A valid Google Places API key. 
+    api_key  -- A valid Google Places API key.
 
     raises:
     GooglePlacesError -- if the geocoder fails to find a location.
@@ -229,9 +229,9 @@ class GooglePlaces(object):
                           DeprecationWarning, stacklevel=2)
         return self.nearby_search(**kwargs)
 
-    def nearby_search(self, language=lang.ENGLISH, keyword=None, location=None,
+    def nearby_search(self, sensor=False, language=lang.ENGLISH, keyword=None, location=None,
                lat_lng=None, name=None, radius=3200, rankby=ranking.PROMINENCE,
-               sensor=False, type=None, types=[], pagetoken=None):
+               type=None, types=[], pagetoken=None):
         """Perform a nearby search using the Google Places API.
 
         One of either location, lat_lng or pagetoken are required, the rest of 
@@ -262,8 +262,8 @@ class GooglePlaces(object):
                     Places (default []). If there is only one item the request
                     will be send as type param.
         pagetoken-- Optional parameter to force the search result to return the next
-                    20 results from a previously run search. Setting this parameter 
-                    will execute a search with the same parameters used previously. 
+                    20 results from a previously run search. Setting this parameter
+                    will execute a search with the same parameters used previously.
                     (default None)
         """
         if location is None and lat_lng is None and pagetoken is None:
@@ -309,7 +309,7 @@ class GooglePlaces(object):
                     radius=3200, type=None, types=[], location=None, pagetoken=None):
         """Perform a text search using the Google Places API.
 
-        Only the one of the query or pagetoken kwargs are required, the rest of the 
+        Only the one of the query or pagetoken kwargs are required, the rest of the
         keyword arguments are optional.
 
         keyword arguments:
@@ -318,8 +318,8 @@ class GooglePlaces(object):
         location -- A human readable location, e.g 'London, England'
                     (default None)
         pagetoken-- Optional parameter to force the search result to return the next
-                    20 results from a previously run search. Setting this parameter 
-                    will execute a search with the same parameters used previously. 
+                    20 results from a previously run search. Setting this parameter
+                    will execute a search with the same parameters used previously.
                     (default None)
         radius   -- The radius (in meters) around the location/lat_lng to
                     restrict the search to. The maximum is 50000 meters.
